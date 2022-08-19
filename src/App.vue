@@ -1,28 +1,62 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-main>
+      <router-view />
+      <AppModal
+        :dialog="AppModal.show"
+        :description="AppModal.text"
+        :persistent="AppModal.persistent"
+        @appModalClose="AppModal.show = false"
+        @appModalCloseOutside="checkPersistenceBeforeCloseModal"
+      >
+        <template slot="header">
+          <component
+            :is="AppModal.titleComponent"
+            :title="AppModal.title"
+          />
+        </template>
+        <template slot="body">
+          <component
+            :is="AppModal.bodyComponent"
+            v-bind="AppModal.bodyData"
+          />
+        </template>
+      </AppModal>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+/* components */
+import AppModal from '@app/components/AppModal.vue'
+/* services */
+import { AppModalService } from './services/modal.service'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AppModal
+  },
+  data: () => ({
+    AppModal: {
+      show: false,
+      title: '',
+      text: '',
+      persistent: false,
+      titleComponent: null,
+      bodyComponent: null,
+      bodyData: {}
+    }
+  }),
+  provide () {
+    const appModalService = new AppModalService({ AppModal: this.AppModal })
+    return { appModalService }
+  },
+  methods: {
+    checkPersistenceBeforeCloseModal () {
+      if (this.AppModal.persistent) return
+      this.AppModal.show = false
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

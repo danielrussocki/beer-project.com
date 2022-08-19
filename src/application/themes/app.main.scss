@@ -1,0 +1,48 @@
+/* variables */
+@import './app._variables.scss';
+/* functions */
+@import './app._functions.scss';
+/* mixins */
+@import './app._mixins.scss';
+/* fonts */
+@import './app.fonts.scss';
+
+/* components */
+@import './components/app.components.scss';
+@import './components/input/app.input.scss';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family;
+}
+
+a, a:active, a:visited {
+  text-decoration: none
+}
+
+.app-box {
+  @include appBox;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-expand{
+  transition: transform .1s ease-in;
+  &:hover {
+    transform: scale(1.2);
+    transition: transform .2s ease-out;
+  }
+}
+
+/* colors */
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Akira Expanded';
+  src: url('/fonts/AkiraExpanded.otf');
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* app text colors */
+.app-text-danger {
+  color: color("app-red")
+}
+
+/* spacings */
+.app-text__basic-spacing {
+  letter-spacing: 10px;
+}
+
+.app-text__small-spacing {
+  letter-spacing: 6px;
+}
+
+/* font-sizes */
+.app-font__6px {
+  font-size: 6px;
+}
+
+.app-font__60prcnt {
+  font-size: 60%;
+}
+
+.app-font__40px {
+  font-size: 40px;
+}

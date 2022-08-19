@@ -1,0 +1,9 @@
+.app-navigation-bar__card {
+  @include appFlexCenter;
+  height: 50px;
+}
+
+.app-navigation-bar__card-bottom {
+  @include appFlexCenter;
+  height: 70px;
+}
