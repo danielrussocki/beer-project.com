@@ -1,5 +1,10 @@
 # beer-project.com
 
+## One Step Execution
+```
+npm run start:dev
+```
+
 ## Project setup
 ```
 npm install
